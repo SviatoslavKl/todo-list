@@ -16,7 +16,7 @@ const TaskCard = (props: TaskCardProps) => {
   const { item, index, column, onRemove } = props;
 
   const onHandleRemove = () => {
-    let isBoss = window.confirm("Are you wanna delete it?");
+    let isBoss = window.confirm("Do you want to delete this?");
     isBoss && onRemove(item.id, column);
   };
 

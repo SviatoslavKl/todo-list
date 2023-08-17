@@ -22,9 +22,9 @@ export const updateTodoListAction = (result: DropResult) => async (dispatch: Dis
     const columns = getState().todoList.items;
 
     if (source.droppableId !== destination.droppableId) {
-      const destColumn = columns[destination.droppableId as Columns];
       if (destination.droppableId === Columns.Todo) return;
 
+      const destColumn = columns[destination.droppableId as Columns];
       const sourceColumn = columns[source.droppableId as Columns];
       const sourceItems = [...sourceColumn.items];
       const destItems = [...destColumn.items];
@@ -34,14 +34,8 @@ export const updateTodoListAction = (result: DropResult) => async (dispatch: Dis
       dispatch(
         update({
           ...columns,
-          [source.droppableId]: {
-            ...sourceColumn,
-            items: sourceItems,
-          },
-          [destination.droppableId]: {
-            ...destColumn,
-            items: destItems,
-          },
+          [source.droppableId]: { ...sourceColumn, items: sourceItems },
+          [destination.droppableId]: { ...destColumn, items: destItems },
         }),
       );
     } else {
@@ -64,10 +58,7 @@ export const removeItemFromListAction =
       dispatch(
         update({
           ...columns,
-          [column]: {
-            ...columns[column],
-            items: columns[column].items.filter((item) => item.id !== id),
-          },
+          [column]: { ...columns[column], items: columns[column].items.filter((item) => item.id !== id) },
         }),
       );
     } catch (e) {
